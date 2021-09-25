@@ -1,6 +1,7 @@
 package com.example.springeducation.user.controller;
 
 import com.example.springeducation.user.dto.RegisterUserDTO;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
