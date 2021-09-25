@@ -1,7 +1,6 @@
-package com.example.user.dto;
+package com.example.springeducation.user.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 public class RegisterUserDTO {
