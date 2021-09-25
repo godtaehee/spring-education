@@ -7,12 +7,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RegisterUserDTO {
-    Long id;
-    String password;
+public class UserDTO {
+    private Long id;
+    private String password;
+    private Grade grade;
 
-    public RegisterUserDTO(Long id,String password){
+    public UserDTO(Long id, String password,Grade grade){
         this.id = id;
         this.password = password;
+        this.grade=grade;
     }
 }

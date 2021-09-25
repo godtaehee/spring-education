@@ -1,8 +1,8 @@
 package com.example.springeducation.user.repository;
 
-import com.example.springeducation.user.dto.RegisterUserDTO;
+import com.example.springeducation.user.dto.UserDTO;
 
 public interface UserRepository {
-    void registerUser(RegisterUserDTO RegisterUserDTO);
-    String findByPassword(Long userid);
+    void save(UserDTO UserDTO);
+    UserDTO findByUser(Long userid);
 }

@@ -29,14 +29,14 @@ Parameter를 "아무거나"로 지정하고 싶다면 `any()`를 사용한다.
 Builder패턴처럼 then, then, then --- 해서 계속 Mock객체의 결과를 조정할수 있다.
 
 ```java
-when(userService.registerUser(registerUserDTO)).thenReturn(1L);
-given(userService.registerUser(registerUserDTO)).willReturn(1L);
+when(userService.registerUser(userDTO)).thenReturn(1L);
+given(userService.registerUser(userDTO)).willReturn(1L);
 ```
 
 ```java
-verify(userService, times(1)).registerUser(registerUserDTO);
-verify(userService, never()).registerUser(registerUserDTO);
-then(userService).should(times(1)).registerUser(registerUserDTO);
+verify(userService, times(1)).registerUser(userDTO);
+verify(userService, never()).registerUser(userDTO);
+then(userService).should(times(1)).registerUser(userDTO);
 ```
 
 `Given`, `When`, `Then`

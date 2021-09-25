@@ -1,8 +1,8 @@
 package com.example.springeducation.user.service;
 
-import com.example.springeducation.user.dto.RegisterUserDTO;
+import com.example.springeducation.user.dto.UserDTO;
 
 public interface UserService {
-    void registerUser(RegisterUserDTO registerUserDTO);
-    String findByPassword(Long id);
+    void save(UserDTO userDTO);
+    UserDTO findByUser(Long id);
 }

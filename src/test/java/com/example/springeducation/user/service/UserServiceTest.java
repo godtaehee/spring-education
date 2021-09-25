@@ -1,24 +1,32 @@
 package com.example.springeducation.user.service;
 
 
-import com.example.springeducation.user.dto.RegisterUserDTO;
-import org.assertj.core.api.Assertions;
+import com.example.springeducation.AppConfig;
+import com.example.springeducation.user.dto.Grade;
+import com.example.springeducation.user.dto.UserDTO;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceTest {
 
-    UserService userService = new UserServiceImpl();
+    UserService userService;
+
+    @BeforeEach
+    void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        userService = appConfig.userService();
+
+    }
 
     @Test
-    void registerUser(){
-        RegisterUserDTO registerUserDTO = new RegisterUserDTO(123L ,"Rabbit");
-        userService.registerUser(registerUserDTO);
+    void save(){
+        UserDTO userDTO = new UserDTO(123L ,"Rabbit", Grade.STUDENT);
+        userService.save(userDTO);
 
-        String password = userService.findByPassword(123L);
+        UserDTO user = userService.findByUser(123L);
 
-        assertThat(password).isEqualTo(registerUserDTO.getPassword());
+        assertThat(user.getGrade()).isEqualTo(userDTO.getGrade());
     }
 }
