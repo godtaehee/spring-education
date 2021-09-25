@@ -2,23 +2,23 @@ package com.example.springeducation.user.controller;
 
 import com.example.springeducation.user.dto.RegisterUserDTO;
 import com.example.springeducation.user.service.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.springeducation.user.service.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Controller
 @RequestMapping("/user")
-@RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    UserService userService = new UserServiceImpl();
 
-    @PostMapping("/register")
-    @ResponseBody
-    public Long registerUser(@RequestBody RegisterUserDTO registerUserDTO) {
-        return userService.registerUser(registerUserDTO);
+    @ResponseBody   //return 시켜주고 싶은 데이터를 json 데이터로 변환시켜준다.
+    @PostMapping("/registerUser")
+    public String registerUser(){
+        RegisterUserDTO registerUserDTO = new RegisterUserDTO(123L,"Rabbit");
+
+        userService.registerUser(registerUserDTO);
+        String password = userService.findByPassword(123L);
+        return password;
     }
-
 }
