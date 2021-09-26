@@ -46,5 +46,3 @@ then(userService).should(times(1)).registerUser(userDTO);
 ## 기타
 
 Optional로 감싸는 방법은 `Optional.of(감쌀 객체)`
-
-작업
