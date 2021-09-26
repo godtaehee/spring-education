@@ -1,8 +1,10 @@
 package com.example.springeducation.lecture.repository;
 
+import com.example.springeducation.lecture.dto.Category;
 import com.example.springeducation.lecture.dto.LectureDTO;
 import com.example.springeducation.user.dto.UserDTO;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

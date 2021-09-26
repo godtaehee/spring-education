@@ -1,5 +1,6 @@
 package com.example.springeducation.lecture.repository;
 
+import com.example.springeducation.lecture.dto.Category;
 import com.example.springeducation.lecture.dto.LectureDTO;
 import com.example.springeducation.user.dto.UserDTO;
 
