@@ -5,6 +5,7 @@ import com.example.springeducation.user.dto.UserDTO;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -17,18 +18,25 @@ public class LectureDTO {
 
     private String teacherName;
 
+    private Long price;
+
     private List<UserDTO> studentList;
 
     private Category category;
 
     private Grade grade;
 
-    public LectureDTO(Long id,String lectureName,String teacherName,List<UserDTO> studentList, Category category,Grade grade){
-        this.id=id;
-        this.lectureName=lectureName;
-        this.teacherName=teacherName;
-        this.studentList=studentList;
-        this.category=category;
-        this.grade=grade;
+    private Date date;
+
+    public LectureDTO(Long id,String lectureName,String teacherName,Long price,List<UserDTO> studentList,
+                      Category category,Grade grade,Date date){
+        this.id = id;
+        this.lectureName = lectureName;
+        this.teacherName = teacherName;
+        this.price = price;
+        this.studentList = studentList;
+        this.category = category;
+        this.grade = grade;
+        this.date = date;
     }
 }

@@ -5,10 +5,14 @@ import com.example.springeducation.lecture.dto.Category;
 import com.example.springeducation.lecture.dto.LectureDTO;
 import com.example.springeducation.user.dto.Grade;
 import com.example.springeducation.user.dto.UserDTO;
+import org.apache.catalina.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -18,23 +22,54 @@ class LectureServiceTest {
 
     @BeforeEach
     void beforeEach(){
-        AppConfig appConfig = new AppConfig();
-        lectureService = appConfig.lectureService();
+        /*AppConfig appConfig = new AppConfig();
+        * lectureService = appConfig.lectureService();*/
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        lectureService = ac.getBean("lectureService",LectureService.class);
     }
     @Test
-    void create(){
+    void start(){
         List<UserDTO> studentList = new ArrayList<>();
+        List<UserDTO> studentList2 = new ArrayList<>();
+        List<UserDTO> studentList3 = new ArrayList<>();
+
+        List<LectureDTO> lectureList = new ArrayList<>();
 
         studentList.add(new UserDTO(1L,"123",Grade.STUDENT));
         studentList.add(new UserDTO(2L,"231",Grade.STUDENT));
         studentList.add(new UserDTO(3L,"321",Grade.STUDENT));
 
-        LectureDTO lectureDTO = new LectureDTO(123L,"WEB","James",studentList, Category.WEB,Grade.TEACHER);
+        studentList2.add(new UserDTO(2L,"231",Grade.STUDENT));
+        studentList2.add(new UserDTO(4L,"222",Grade.STUDENT));
+        studentList2.add(new UserDTO(5L,"333",Grade.STUDENT));
 
-        lectureService.create(lectureDTO);
+        studentList3.add(new UserDTO(1L,"123",Grade.STUDENT));
+        studentList3.add(new UserDTO(2L,"231",Grade.STUDENT));
+        studentList3.add(new UserDTO(5L,"333",Grade.STUDENT));
+
+        lectureList.add(new LectureDTO(123L,"WEB-James","James",12000L,studentList, Category.WEB,Grade.TEACHER,new Date()));
+        lectureList.add(new LectureDTO(124L,"WEB-Lee","Lee",13000L,studentList2, Category.WEB,Grade.TEACHER,new Date()));
+        lectureList.add(new LectureDTO(125L,"WEB-Kim","Kim",14000L,studentList3, Category.WEB,Grade.TEACHER,new Date()));
+
+        createLecture(lectureList);
         findByStudents(studentList);
+        findByLectures(lectureList);
+    }
+    void createLecture(List<LectureDTO> lectureList){
+        for(LectureDTO lectureDTO : lectureList){
+            lectureService.create(lectureDTO);
+        }
     }
     void findByStudents(List<UserDTO> studentList){
         assertThat(lectureService.findByStudents(123L)).isEqualTo(studentList);
+    }
+
+    void findByLectures(List<LectureDTO> lectureList){
+        String teacherName = lectureList.get(0).getTeacherName();
+        String lectureName = lectureList.get(0).getLectureName();
+        Long id = lectureList.get(0).getStudentList().get(0).getId();
+        Category category = lectureList.get(0).getCategory();
+
+        assertThat(lectureService.findByLecture(teacherName,lectureName,id,category)).size().isEqualTo(2);
     }
 }
