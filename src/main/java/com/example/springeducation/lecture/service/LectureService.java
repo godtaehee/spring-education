@@ -4,10 +4,12 @@ import com.example.springeducation.lecture.dto.Category;
 import com.example.springeducation.lecture.dto.LectureDTO;
 import com.example.springeducation.user.dto.UserDTO;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Component
 public interface LectureService {
     void create(LectureDTO lectureDTO);
     List<UserDTO> findByStudents(Long id);

@@ -1,6 +1,7 @@
 package com.example.springeducation.lecture.service;
 
 import com.example.springeducation.AppConfig;
+import com.example.springeducation.AutoAppConfig;
 import com.example.springeducation.lecture.dto.Category;
 import com.example.springeducation.lecture.dto.LectureDTO;
 import com.example.springeducation.user.dto.Grade;
@@ -24,7 +25,7 @@ class LectureServiceTest {
     void beforeEach(){
         /*AppConfig appConfig = new AppConfig();
         * lectureService = appConfig.lectureService();*/
-        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
         lectureService = ac.getBean("lectureService",LectureService.class);
     }
     @Test
@@ -65,10 +66,10 @@ class LectureServiceTest {
     }
 
     void findByLectures(List<LectureDTO> lectureList){
-        String teacherName = lectureList.get(0).getTeacherName();
-        String lectureName = lectureList.get(0).getLectureName();
-        Long id = lectureList.get(0).getStudentList().get(0).getId();
-        Category category = lectureList.get(0).getCategory();
+        String teacherName = "";
+        String lectureName = "";
+        Long id = 1L;
+        Category category = Category.WEB;
 
         assertThat(lectureService.findByLecture(teacherName,lectureName,id,category)).size().isEqualTo(2);
     }
