@@ -9,4 +9,5 @@ import org.springframework.stereotype.Service;
 public interface UserService {
     void save(UserDTO userDTO);
     UserDTO findByUser(Long id);
+    boolean addLecture(Long id,Long lectureId);
 }

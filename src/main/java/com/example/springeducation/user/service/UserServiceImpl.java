@@ -20,4 +20,13 @@ public class UserServiceImpl implements UserService {
     public UserDTO findByUser(Long id) {
         return userRepository.findByUser(id);
     }
+
+    @Override
+    public boolean addLecture(Long id, Long lectureId) {
+        if(id==null){
+            return false;
+        }else {
+            return userRepository.addLecture(id, lectureId);
+        }
+    }
 }

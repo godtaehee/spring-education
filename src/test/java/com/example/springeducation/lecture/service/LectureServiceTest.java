@@ -1,12 +1,10 @@
 package com.example.springeducation.lecture.service;
 
-import com.example.springeducation.AppConfig;
 import com.example.springeducation.AutoAppConfig;
 import com.example.springeducation.lecture.dto.Category;
 import com.example.springeducation.lecture.dto.LectureDTO;
 import com.example.springeducation.user.dto.Grade;
 import com.example.springeducation.user.dto.UserDTO;
-import org.apache.catalina.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -36,21 +34,24 @@ class LectureServiceTest {
 
         List<LectureDTO> lectureList = new ArrayList<>();
 
-        studentList.add(new UserDTO(1L,"123",Grade.STUDENT));
-        studentList.add(new UserDTO(2L,"231",Grade.STUDENT));
-        studentList.add(new UserDTO(3L,"321",Grade.STUDENT));
+        studentList.add(new UserDTO(1L,"123",Grade.STUDENT,"Tony123@naver.com",new Date()));
+        studentList.add(new UserDTO(2L,"231",Grade.STUDENT,"Huge123@naver.com",new Date()));
+        studentList.add(new UserDTO(3L,"321",Grade.STUDENT,"Pok123@naver.com",new Date()));
 
-        studentList2.add(new UserDTO(2L,"231",Grade.STUDENT));
-        studentList2.add(new UserDTO(4L,"222",Grade.STUDENT));
-        studentList2.add(new UserDTO(5L,"333",Grade.STUDENT));
+        studentList2.add(new UserDTO(2L,"231",Grade.STUDENT,"Piter123@kakao.com",new Date()));
+        studentList2.add(new UserDTO(4L,"222",Grade.STUDENT,"Nick123@kakao.com",new Date()));
+        studentList2.add(new UserDTO(5L,"333",Grade.STUDENT,"Quick123@kakao.com",new Date()));
 
-        studentList3.add(new UserDTO(1L,"123",Grade.STUDENT));
-        studentList3.add(new UserDTO(2L,"231",Grade.STUDENT));
-        studentList3.add(new UserDTO(5L,"333",Grade.STUDENT));
+        studentList3.add(new UserDTO(1L,"123",Grade.STUDENT,"Moo123@google.com",new Date()));
+        studentList3.add(new UserDTO(2L,"231",Grade.STUDENT,"Bob123@google.com",new Date()));
+        studentList3.add(new UserDTO(5L,"333",Grade.STUDENT,"keria123@google.com",new Date()));
 
-        lectureList.add(new LectureDTO(123L,"WEB-James","James",12000L,studentList, Category.WEB,Grade.TEACHER,new Date()));
-        lectureList.add(new LectureDTO(124L,"WEB-Lee","Lee",13000L,studentList2, Category.WEB,Grade.TEACHER,new Date()));
-        lectureList.add(new LectureDTO(125L,"WEB-Kim","Kim",14000L,studentList3, Category.WEB,Grade.TEACHER,new Date()));
+        lectureList.add(new LectureDTO(123L,"WEB-James","James",12000L,studentList,
+                Category.WEB,Grade.TEACHER,new Date(),"James's lecture, price : 12000"));
+        lectureList.add(new LectureDTO(124L,"WEB-Lee","Lee",13000L,studentList2,
+                Category.WEB,Grade.TEACHER,new Date(),"Lee's lecture,price : 13000"));
+        lectureList.add(new LectureDTO(125L,"WEB-Kim","Kim",14000L,studentList3,
+                Category.WEB,Grade.TEACHER,new Date(),"Kim's lecture, price : 14000"));
 
         createLecture(lectureList);
         findByStudents(studentList);
@@ -58,7 +59,7 @@ class LectureServiceTest {
     }
     void createLecture(List<LectureDTO> lectureList){
         for(LectureDTO lectureDTO : lectureList){
-            lectureService.create(lectureDTO);
+            lectureService.createLecture(lectureDTO);
         }
     }
     void findByStudents(List<UserDTO> studentList){

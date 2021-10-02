@@ -11,7 +11,11 @@ import java.util.List;
 
 @Component
 public interface LectureService {
-    void create(LectureDTO lectureDTO);
+    void createLecture(LectureDTO lectureDTO);
     List<UserDTO> findByStudents(Long id);
     List<LectureDTO> findByLecture(String teacherName, String lectureName, Long id, Category category);
+    LectureDTO findByDetailLecture(Long id);
+    void openLecture(Long id);
+    void modifyLecture(Long id,String lectureName,String explain,Long price);
+    boolean deleteLecture(Long id);
 }

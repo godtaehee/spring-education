@@ -28,8 +28,12 @@ public class LectureDTO {
 
     private Date date;
 
+    private Boolean open = false;
+
+    private String explain;
+
     public LectureDTO(Long id,String lectureName,String teacherName,Long price,List<UserDTO> studentList,
-                      Category category,Grade grade,Date date){
+                      Category category,Grade grade,Date date,String explain){
         this.id = id;
         this.lectureName = lectureName;
         this.teacherName = teacherName;
@@ -38,5 +42,6 @@ public class LectureDTO {
         this.category = category;
         this.grade = grade;
         this.date = date;
+        this.explain = explain;
     }
 }

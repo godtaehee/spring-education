@@ -12,9 +12,9 @@ public class MemoryLectureRepository implements LectureRepository{
     Map<Long,LectureDTO> lecture = new HashMap<>();
 
     /**
-     * 강의를 생성(강사일때만 가능)
+     * 강의를 생성(강사일때만 가능,처음 생성시 비공개)
      */
-    public void create(LectureDTO lectureDTO){
+    public void createLecture(LectureDTO lectureDTO){
         lecture.put(lectureDTO.getId(),lectureDTO);
     }
 
@@ -81,5 +81,65 @@ public class MemoryLectureRepository implements LectureRepository{
         });
         //list.forEach(x-> System.out.println(x.getPrice()));
         return list;
+    }
+
+
+    /**
+     * 강의 상세 조회(강의 id 값으로 조회)
+     */
+    @Override
+    public LectureDTO findByDetailLecture(Long id) {
+        for(Map.Entry<Long,LectureDTO> lectureDTO : lecture.entrySet()){
+            Long lectureId = lectureDTO.getValue().getId();
+            if(id==lectureId){
+                return lectureDTO.getValue();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 강의 수정
+     */
+    @Override
+    public void modifyLecture(Long id,String lectureName,String explain,Long price) {
+        for(Map.Entry<Long,LectureDTO> lectureDto : lecture.entrySet()){
+            if(id==lectureDto.getValue().getId()){
+                if(lectureName!=null){
+                    lectureDto.getValue().setLectureName(lectureName);
+                }
+                if(explain!=null){
+                    lectureDto.getValue().setExplain(explain);
+                }
+                if(price!=null){
+                    lectureDto.getValue().setPrice(price);
+                }
+            }
+        }
+    }
+
+    /**
+     * 강의 오픈
+     */
+    @Override
+    public void openLecture(Long id) {
+        for(Map.Entry<Long,LectureDTO> lectureDto : lecture.entrySet()){
+            if(id==lectureDto.getValue().getId()){
+                lectureDto.getValue().setOpen(true);
+            }
+        }
+    }
+
+    /**
+     * 강의 삭제
+     */
+    @Override
+    public boolean deleteLecture(Long id) {
+        LectureDTO lectureDTO = lecture.remove(id);
+        if(lectureDTO!=null){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

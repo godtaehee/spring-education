@@ -19,9 +19,9 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    public void create(LectureDTO lectureDTO) {
+    public void createLecture(LectureDTO lectureDTO) {
         if(lectureDTO.getGrade()== Grade.TEACHER) {
-            lectureRepository.create(lectureDTO);
+            lectureRepository.createLecture(lectureDTO);
         }
     }
 
@@ -33,5 +33,25 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public List<LectureDTO> findByLecture(String teacherName, String lectureName, Long id, Category category) {
         return lectureRepository.findByLecture(teacherName,lectureName,id,category);
+    }
+
+    @Override
+    public LectureDTO findByDetailLecture(Long id) {
+        return lectureRepository.findByDetailLecture(id);
+    }
+
+    @Override
+    public void openLecture(Long id) {
+        lectureRepository.openLecture(id);
+    }
+
+    @Override
+    public void modifyLecture(Long id, String lectureName, String explain, Long price) {
+        lectureRepository.modifyLecture(id,lectureName,explain,price);
+    }
+
+    @Override
+    public boolean deleteLecture(Long id) {
+        return lectureRepository.deleteLecture(id);
     }
 }
