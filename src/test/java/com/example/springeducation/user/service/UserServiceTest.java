@@ -7,6 +7,8 @@ import com.example.springeducation.user.dto.UserDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
 import static org.assertj.core.api.Assertions.*;
 
 class UserServiceTest {
@@ -22,7 +24,7 @@ class UserServiceTest {
 
     @Test
     void save(){
-        UserDTO userDTO = new UserDTO(123L ,"Rabbit", Grade.STUDENT);
+        UserDTO userDTO = new UserDTO(123L ,"Rabbit", Grade.STUDENT,"rabbit123@naver.com",new Date());
         userService.save(userDTO);
 
         UserDTO user = userService.findByUser(123L);
